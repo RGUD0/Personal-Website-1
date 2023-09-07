@@ -55,6 +55,7 @@ ul, h3 {
 /* Left column */
 .leftcolumn {   
     float: left;
+    left: 0;
     width: 25%;
     padding-right: 20px;
 }
@@ -68,6 +69,7 @@ ul, h3 {
   /* Right column */
 .rightcolumn {
     float: left;
+    right: 0;
     width: 25%;
     padding-left: 20px;
 }
@@ -101,7 +103,7 @@ ul, h3 {
 }
 
 .footer {
-    padding: 10px;
+    padding: 5px;
     text-align: left;
     background: #ddd;
     margin-top: 20px;
@@ -113,9 +115,12 @@ ul, h3 {
 
 /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 800px) {
-    .leftcolumn, .rightcolumn {
+    .leftcolumn, .middlecolumn, .rightcolumn {
         width: 100%;
         padding: 0;
+    }
+    .box, .clearbox {
+        margin-top: 0px;
     }
 }
   
