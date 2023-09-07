@@ -107,7 +107,7 @@ ul, h3 {
     text-align: left;
     background: #ddd;
     margin-top: 20px;
-    position: fixed;
+    /*position: fixed;*/
     left: 0;
     right: 0;
     bottom: 0;
