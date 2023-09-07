@@ -12,6 +12,10 @@ div {
     text-align: center;
 }
 
+ul, h3 {
+    text-align: left;
+}
+
 .header {
     padding: 30px;
     text-align: center;
@@ -55,20 +59,6 @@ div {
     padding-right: 20px;
 }
 
-.box {
-    background-color: white;
-    padding: 20px;
-    height: 100%;
-    margin-top: 20px;
-}
-
-.clearbox {
-    background-color: none;
-    padding: 20px;
-    height: 100%;
-    margin-top: 20px;
-}
-
 .middlecolumn {
     float: left;
     width: 50%;
@@ -80,6 +70,21 @@ div {
     float: left;
     width: 25%;
     padding-left: 20px;
+}
+
+.box {
+    text-align: center;
+    background-color: white;
+    padding: 20px;
+    height: 100%;
+    margin-top: 20px;
+}
+
+.clearbox {
+    background-color: none;
+    padding: 20px;
+    height: 100%;
+    margin-top: 20px;
 }
 
 .row::after {
@@ -100,6 +105,10 @@ div {
     text-align: left;
     background: #ddd;
     margin-top: 20px;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
 
 /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
