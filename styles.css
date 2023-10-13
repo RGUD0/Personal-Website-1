@@ -89,6 +89,10 @@ h3, ul, p {
     margin-top: 20px;
 }
 
+.left {
+    text-align: left;
+}
+
 .row::after {
     content: "";
     display: table;
