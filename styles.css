@@ -19,7 +19,7 @@ h3, ul, p {
 form {
     display: grid;
     grid-template-columns: 1fr 2fr;
-    grid-gap: 16px;
+    grid-gap: 20px;
 }
 
 label {
