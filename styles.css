@@ -25,6 +25,7 @@ form {
 label {
     grid-column: 1 / 2;
 }
+
 input,
 button {
     grid-column: 2 / 3;
@@ -92,7 +93,7 @@ button {
     text-align: center;
     background-color: white;
     padding: 20px;
-    height: 100%;
+    height: auto;
     margin-top: 20px;
 }
 
