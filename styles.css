@@ -33,6 +33,7 @@ button {
 
 .message {
     grid-row: 5 / 7;
+    overflow-wrap: break-word;
 }
 
 .header {
