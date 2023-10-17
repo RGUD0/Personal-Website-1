@@ -31,6 +31,10 @@ button {
     grid-column: 2 / 3;
 }
 
+.message {
+    grid-row: 5 / 7;
+}
+
 .header {
     padding: 30px;
     text-align: center;
