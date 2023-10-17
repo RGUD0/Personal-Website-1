@@ -90,6 +90,7 @@ button {
 }
 
 .box {
+    overflow: hidden;
     text-align: center;
     background-color: white;
     padding: 20px;
