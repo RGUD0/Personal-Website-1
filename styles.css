@@ -16,6 +16,10 @@ h3, ul, p {
     text-align: left;
 }
 
+form {
+    overflow: hidden;
+}
+
 label {
     float: left;
     width: 200px;
@@ -126,8 +130,6 @@ button {
     right: 0;
     bottom: 0;
 }
-
-
 
 /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 800px) {
