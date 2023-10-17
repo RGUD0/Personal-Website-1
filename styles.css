@@ -17,21 +17,17 @@ h3, ul, p {
 }
 
 form {
-    overflow: hidden;
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    grid-gap: 16px;
 }
 
 label {
-    float: left;
-    width: 200px;
-    padding-right: 24px;
+    grid-column: 1 / 2;
 }
-input {
-    float: left;
-    width: calc(100% - 200px);
-}
+input,
 button {
-    float: right;
-    width: calc(100% - 200px);
+    grid-column: 2 / 3;
 }
 
 .header {
