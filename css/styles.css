@@ -18,7 +18,7 @@ h3, ul, p {
 
 form {
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 1fr 3fr auto;
     grid-gap: 20px;
 }
 
@@ -33,7 +33,27 @@ button {
 
 .message {
     grid-row: 5 / 7;
-    overflow-wrap: break-word;
+    grid-column: 2 / 3;
+    /*overflow-wrap: break-word;*/
+    height: 200px;
+    resize: none;
+}
+
+.required {
+    grid-column: 3 / 4;
+    color: red;
+    font-size: larger;
+    font-weight: bolder;
+    margin-left: -20px;
+}
+
+.validation {
+    text-align: center;
+    grid-row: 8 / 9;
+    grid-column: 1 / 3;
+    color: red;
+    font-size: medium;
+    font-weight: bolder;
 }
 
 .header {
@@ -118,8 +138,8 @@ button {
 
 .image {
     background-color: #aaa;
-    height: 100%;
-    width: 200px;
+    height: auto;
+    width: clamp(50%, 50%, 100%);
     padding: 20px;
 }
 
