@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="styles.css">
+        <script src="scripts.js"></script>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Un-Orth-O' Clock</title>
+    </head>
+    <body>
+        <div class="header">
+            <h1><u>Un</u><u>Orth-O'</u> <u>Clock</u></h1>
+            <p>Unorthodox Time Telling</p>
+        </div>
+        
+        <div class="topnav">
+            <a href="https://RGUD0.github.io/">Home</a>
+            <a href="betterclock.html">Better Clock</a>
+            <a href="primeclock.html"><u>Prime Clock</u></a>
+            <!--<a href="timeticks.html">Time Ticks</a>
+            <a href="test.html" style="float:right">Test</a>-->
+        </div>
+        
+        <div class="row">
+            <div class="leftcomun">
+                <div class="card center">
+                    <h2>Prime Clock</h2>
+                    <h3>Just Primes</h3>
+                    <hr>
+                    <h3>Terms</h3>
+                    <dl style="background-color: lightgray; border: 4px solid; padding: 20px;">
+                        <dt><u><b>Prime</b></u></dt>
+                        <dd>A natural (N) number n that has factors of only 1 and n, where n != 1.</dd>
+                        <dt><u><b>Composite</b></u></dt>
+                        <dd>An integer (Q) number n that has more than the 2 factors of 1 and n.</dd>
+                        <dt><u><b>Factors</b></u></dt>
+                        <dd>Integer pairs of a an integer (Q) number n, where the product is n.</dd>
+                        <dt><u><b>Prime Factorization</b></u></dt>
+                        <dd>A representation of a natural (N) number n, greater than one, where the production only contains prime numbers.</dd>
+                        <dt><u><b>Natural Numbers (N)</b></u></dt>
+                        <dd>Whole counting numbers starting from 1, going on to 2, 3, ... and so on to +infinity.</dd>
+                        <dt><u><b>Integer Numbers (Q)</b></u></dt>
+                        <dd>Whole numbers ranging from -infinity, ... , -1, 0, 1, ... and so on to +infinity. </dd>
+                        <dt><u><b>Clock</b></u></dt>
+                        <dd>A tool used to display the time: hours, minutes, and seconds.</dd>
+                        <dt><u><b>Prime Clock</b></u></dt>
+                        <dd>A tool used to display the time only using prime numbers, and prime factorizations.</dd>
+                    </dl>
+                    <hr>
+                    <!--
+                    <button onclick="getTime()" style="font-size:25px; background-color: grey; color:lightblue; border-radius:25px;">Get Time!</button>
+                    -->
+                    <!--
+                    <a style="font-size:25px; background-color: grey; color:white; border-radius:25px;" href="test.html">Test</a>
+                    -->
+                    <div class="center">
+                        <canvas id="canvasClock" width="400px" height="400px" style="border:0px solid #000000;"></canvas>
+                        <script>
+                            // Context
+                            const canvas = document.getElementById("canvasClock");
+                            const ctx = canvas.getContext("2d");
+                            // Dimensions
+                            const height = canvas.height;
+                            const width = canvas.width;
+                            const midHeight = height/2;
+                            const midWidth = width/2;
+                            // outerframe
+                            const frameWidth = 5;
+                            const radius = midWidth - (frameWidth/2);
+                            // hours 12/24
+                            const sides = 24;
+                            const angleA = (2*Math.PI)/sides;
+
+                            drawClock();
+                            setInterval(drawClock, 1000);
+
+                            function drawClock() {
+                                // clear canvas
+                                canvas.height = height;
+                                // translate origin
+                                ctx.translate(midWidth,midHeight);
+                                drawFace(ctx, radius);
+                                drawSets(ctx, radius);
+                                drawTime(ctx, radius);
+                            }
+
+                            function drawFace(ctx, radius) {
+                                // Main Clock Background
+                                ctx.beginPath();
+                                ctx.arc(0, 0, radius, 0, 2 * Math.PI,false);
+                                ctx.fillStyle = "white";
+                                ctx.fill();
+                                ctx.closePath();
+                                // Main Clock Frame
+                                ctx.beginPath();
+                                ctx.arc(0, 0, radius, 0, 2 * Math.PI,false);
+                                ctx.strokeStyle = "black";
+                                ctx.lineWidth = frameWidth;
+                                ctx.stroke();
+                                ctx.closePath();
+                                // Center Dot
+                                ctx.beginPath();
+                                ctx.arc(0, 0, 7, 0, 2 * Math.PI,false);
+                                ctx.fillStyle = "black";
+                                ctx.fill();
+                                ctx.closePath();
+                            }
+                            
+                            function drawSets(ctx, radius) {
+                                const hourScalar = 0.88;
+                                const minSecScalar = 0.60;
+                                drawNumbers(ctx, radius, 24, hourScalar, 15, 1);
+                                drawNumbers(ctx, radius, 60, minSecScalar, 15, 5);
+                            }
+
+                            function drawNumbers(ctx, radius, count, scale, fontSize, multiple) {
+                                for(let index = 0; index < (count/multiple); index++) {
+                                    // Number Angle Position
+                                    let numAngle = ((2*Math.PI)/(count/multiple)) * index;
+                                    let oneShift = (2 * Math.PI)/(count/multiple);
+                                    let trueAngle = numAngle - (Math.PI/2) + oneShift;
+                                    // Number Rotation
+                                    let rotation = (numAngle+oneShift);
+                                    rotation = Math.round(rotation*(180/Math.PI))%360;
+                                    rotation = rotation*(Math.PI/180);
+                                    if (rotation > (Math.PI/2) && rotation <= ((3*Math.PI)/2)) {
+                                        rotation += Math.PI;
+                                    }
+                                    // Number Position
+                                    let xWidth = (scale * radius * Math.cos(trueAngle));
+                                    let yHeight = (scale * radius * Math.sin(trueAngle)) + (fontSize/3);
+                                    // Number Strings
+                                    ctx.font = fontSize.toString() + "px Arial";
+                                    ctx.textAlign = "center";
+                                    let number = turnPrimeLimit((index + 1)*multiple,count);
+                                    let strNum = strSeparator(primeFactorize(number),"*");
+                                    // (To Num Position) (Rot Num)  
+                                    ctx.translate(xWidth,yHeight);
+                                    ctx.rotate(rotation);
+                                    // (Place Num)
+                                    // strNum,0,0 if rotate
+                                    // strum,xWidth,yHeight if no rotate
+                                    ctx.fillText(strNum,0,0);
+                                    // (Unrot Num) (Return Num Position)
+                                    ctx.rotate(-rotation);
+                                    ctx.translate(-xWidth,-yHeight);
+                                }
+                            }
+
+                            function drawTime(ctx, radius) {
+                                // hand length scalars
+                                const secondScalar = 0.93;
+                                const minuteScalar = 0.60; // 0.80
+                                const hourScalar = 0.60;
+                                // current times
+                                const now = new Date();
+                                let hour = now.getHours();
+                                let minute = now.getMinutes();
+                                let second = now.getSeconds();
+                                // hand angles: second, minute, hour
+                                let secondAngle = (second * ((2 * Math.PI)/60));
+                                let minuteAngle = (minute * ((2 * Math.PI)/60)) + (second * ((2 * Math.PI)/(60*60)));
+                                let hourAngle = (hour * ((2 * Math.PI)/24)) + (minute * ((2 * Math.PI)/(24*60))) + (second * ((2 * Math.PI)/(24 * 60*60)));
+                                // hand lengths: second, minute, hour
+                                let secondHLength = radius * secondScalar;
+                                let minuteHLength = radius * minuteScalar;
+                                let hourHLength = radius * hourScalar;
+                                // draw hands
+                                drawHand(ctx, secondAngle, hourHLength, 10, "red");
+                                drawHand(ctx, minuteAngle, minuteHLength, 6, "black");
+                                drawHand(ctx, hourAngle, secondHLength, 3, "black");
+                            }
+                            
+                            function drawHand(ctx, angle, length, width, color) {
+                                ctx.beginPath();
+                                ctx.lineWidth = width;
+                                ctx.lineCap = "round";
+                                ctx.strokeStyle = color;
+                                ctx.moveTo(0,0);
+                                ctx.rotate(angle);
+                                ctx.lineTo(0, -length);
+                                ctx.stroke();
+                                ctx.rotate(-angle);
+                            }
+                        </script>
+                        <h3>Time: <span id="timeF"></span></h3>
+                        <h3>Prime Time: <span id="timePF"></span></h3>
+                    </div>
+                    
+                    <hr>
+                    <h3>Factors</h3>
+                    <hr>
+                    <h4>Hour: <span id="hourF"></span></h4>
+                    <h4>Minute: <span id="minuteF"></span></h4>
+                    <h4>Second: <span id="secondF"></span></h4>
+                    <h4>Total Minutes: <span id="totalMinutesF"></span></h4>
+                    <h4>Total Seconds: <span id="totalSecondsF"></span></h4>
+                    <hr>
+                    <h3>Prime Factorize</h3>
+                    <hr>
+                    <h4>Hour: <span id="hourPF"></span></h4>
+                    <h4>Minute: <span id="minutePF"></span></h4>
+                    <h4>Second: <span id="secondPF"></span></h4>
+                    <h4>Total Minutes: <span id="totalMinutesPF"></span></h4>
+                    <h4>Total Seconds: <span id="totalSecondsPF"></span></h4>
+                    <hr>
+                </div>
+            </div>
+        </div>
+        <script src="scripts.js"></script>
+    </body>
+</html>

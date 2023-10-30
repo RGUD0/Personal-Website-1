@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="styles.css">
+        <script src="scripts.js"></script>
+        <title>Un-Orth-O' Clock</title>
+    </head>
+    <body>
+        <div class="header">
+            <h1><u>Un</u><u>Orth-O'</u> <u>Clock</u></h1>
+            <p>Unorthodox Time Telling</p>
+        </div>
+        
+        <div class="topnav">
+            <a href="https://RGUD0.github.io/">Home</a>
+            <a href="betterclock.html"><u>Better Clock</u></a>
+            <a href="primeclock.html">Prime Clock</a>
+            <!--<a href="timeticks.html">Time Ticks</a>
+            <a href="test.html" style="float:right">Test</a>-->
+        </div>
+        <!--id="clockTarget"-->
+        <div class="row" id="stage">
+            <div class="leftcomun">
+                <div class="card center" >
+                    <h2>Better Clock</h2>
+                    <h3>Superior 24-Hour Clock</h3>
+                    <hr>
+                    <canvas id="canvasClock" width="400px" height="400px" style="border:0px solid #000000;"></canvas>
+                    <script>
+                        /*
+                        // Create a new canvas element
+                        var canvas = document.createElement("canvas");
+
+                        // Set attributes for the canvas, such as width and height
+                        canvas.width = 400;
+                        canvas.height = 400;
+                        canvas.style = "border: 1px solid #000000; margin:";
+                        // Add the canvas element to the HTML document
+                        document.querySelector("#clockTarget").appendChild(canvas);
+                        
+                        const canvas = document.createElement("canvas");
+                        canvas.setAttribute("width","400px");
+                        canvas.setAttribute("height","400px");
+                        canvas.setAttribute("style","border:1px solid #000000;")
+                        canvas.innerHTML = "Hello Button";
+                        canvas.width = "400px";
+                        canvas.height = "400px";
+                        canvas.style = "border:1px solid #000000;";
+                        document.body.appendChild(canvas);
+                        
+                        //createClock("canvasClock","400px","400px");
+                        */
+                        // Context
+                        const canvas = document.getElementById("canvasClock");
+                        const ctx = canvas.getContext("2d");
+                        // Dimensions
+                        const height = canvas.height;
+                        const width = canvas.width;
+                        const midHeight = height/2;
+                        const midWidth = width/2;
+                        // outerframe
+                        const frameWidth = 5;
+                        const radius = (width/2) - (frameWidth/2);
+
+                        drawClock();
+                        setInterval(drawClock, 1000);
+
+                        function drawClock() {
+                            // clear canvas
+                            canvas.height = height;
+                            // translate origin
+                            ctx.translate(midWidth,midHeight);
+                            drawSets(ctx, radius);
+                            drawTime(ctx, radius);
+                            drawFace(ctx, radius);
+                        }
+
+                        function drawFace(ctx, radius) {
+                            // Main Clock Frame
+                            ctx.beginPath();
+                            ctx.arc(0, 0, radius, 0, 2 * Math.PI,false);
+                            ctx.strokeStyle = "black";
+                            ctx.lineWidth = frameWidth;
+                            ctx.stroke();
+                            // Center Dot
+                            ctx.beginPath();
+                            ctx.arc(0, 0, 7, 0, 2 * Math.PI,false);
+                            ctx.fillStyle = "black";
+                            ctx.fill();
+                        }
+                        
+                        function drawSets(ctx, radius) {
+                            const hourScalar = 0.88;
+                            const minSecScalar = 0.60;
+                            drawNumbers(ctx, radius, 24, hourScalar, 20, 1);
+                            drawNumbers(ctx, radius, 60, minSecScalar, 15, 5);
+                        }
+
+                        function drawNumbers(ctx, radius, count, scale, fontSize, multiple) {
+                            for(let index = 0; index < (count/multiple); index++) {
+                                // Number Positions
+                                let numAngle = ((2*Math.PI)/(count/multiple)) * index;
+                                let oneShift = (2 * Math.PI)/(count/multiple);
+                                let trueAngle = numAngle - (Math.PI/2) + oneShift;
+                                let xWidth = (scale * radius * Math.cos(trueAngle));
+                                let yHeight = (scale * radius * Math.sin(trueAngle)) + (fontSize/3);
+                                // Numbers
+                                ctx.font = fontSize.toString() + "px Arial";
+                                ctx.textAlign = "center";
+                                ctx.fillText(((index + 1)*multiple).toString(),xWidth,yHeight);
+                            }
+                        }
+
+                        function drawTime(ctx, radius) {
+                            // hand scalars
+                            const secondScalar = 0.93;
+                            const minuteScalar = 0.60; // 0.80
+                            const hourScalar = 0.60;
+                            // current times
+                            const now = new Date();
+                            let hour = now.getHours();
+                            let minute = now.getMinutes();
+                            let second = now.getSeconds();
+                            // angles: second, minute, hour
+                            let secondAngle = (second * ((2 * Math.PI)/60));
+                            let minuteAngle = (minute * ((2 * Math.PI)/60)) + (second * ((2 * Math.PI)/(60*60)));
+                            let hourAngle = (hour * ((2 * Math.PI)/24)) + (minute * ((2 * Math.PI)/(24*60))) + (second * ((2 * Math.PI)/(24 * 60*60)));
+                            // hand lengths: second, minute, hour
+                            let secondHLength = radius * secondScalar;
+                            let minuteHLength = radius * minuteScalar;
+                            let hourHLength = radius * hourScalar;
+                            // draw hands
+                            drawHand(ctx, secondAngle, hourHLength, 10, "red");
+                            drawHand(ctx, minuteAngle, minuteHLength, 6, "black");
+                            drawHand(ctx, hourAngle, secondHLength, 3, "black");
+                        }
+                        
+                        function drawHand(ctx, angle, length, width, color) {
+                            ctx.beginPath();
+                            ctx.lineWidth = width;
+                            ctx.lineCap = "round";
+                            ctx.strokeStyle = color;
+                            ctx.moveTo(0,0);
+                            ctx.rotate(angle);
+                            ctx.lineTo(0, -length);
+                            ctx.stroke();
+                            ctx.rotate(-angle);
+                        }
+                        //*/
+                    </script>
+                </div>
+            </div>
+        </div>
+
+        <script src="scripts.js"></script>
+    </body>
+</html>
