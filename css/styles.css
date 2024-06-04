@@ -56,11 +56,11 @@ button {
 }
 
 body {
-    font-family: Arial;
+    font-family: Georgia, serif;
     /*background: #f1f1f1; */
     padding: 0px;
     margin: 0px;
-    background: linear-gradient(135deg, rgba(0,0,0,1) 10%, rgba(128,128,128,1) 30%, rgba(255,255,255,1) 50%, rgba(0,0,0,1) 70%, rgba(128,128,128,1) 90%);
+    background: linear-gradient(135deg, rgba(0,0,0,1) 10%, rgba(128,128,128,1) 30%, rgba(255,255,255,1) 50%, rgba(128,128,128,1) 70%, rgba(0,0,0,1) 90%);
 	/* background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab); */
 	background-size: 400% 400%;
 	animation: gradient 10s linear infinite running;
@@ -70,6 +70,19 @@ body {
 Pastel Rainbow Gradient
 background: linear-gradient(135deg, rgba(255,128,128,1) 10%, rgba(128,255,128,1) 30%, rgba(128,128,255,1) 50%, rgba(255,128,128,1) 70%, rgba(128,255,128,1) 90%);
 background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+
+Day - Night Gradient
+background: rgb(255,255,255);
+background: linear-gradient(135deg, rgba(255,255,255,1) 8.33%, rgba(210,248,251,1) 25%, rgba(253,222,80,1) 41.67%, rgba(182,2,2,1) 58.33%, rgba(13,11,60,1) 75%, rgba(0,0,0,1) 91.67%);
+
+background: rgb(255,255,255);
+background: linear-gradient(135deg, rgba(255,255,255,1) 5%, rgba(210,248,251,1) 15%, rgba(253,222,80,1) 25%, rgba(182,2,2,1) 35%, rgba(13,11,60,1) 45%, rgba(0,0,0,1) 55%, rgba(13,11,60,1) 65%, rgba(182,2,2,1) 75%, rgba(253,222,80,1) 85%, rgba(210,248,251,1) 95%);
+
+background: rgb(255,255,255);
+background: linear-gradient(135deg, rgba(255,255,255,1) 3.125%, rgba(210,248,251,1) 9.375%, rgba(253,222,80,1) 15.625%, rgba(182,2,2,1) 21.875%, rgba(13,11,60,1) 28.125%, rgba(0,0,0,1) 34.375%, rgba(13,11,60,1) 40.625%, rgba(182,2,2,1) 46.875%, rgba(253,222,80,1) 53.125%, rgba(210,248,251,1) 59.375%, rgba(255,255,255,1) 65.625%, rgba(210,248,251,1) 71.875%, rgba(253,222,80,1) 78.125%, rgba(182,2,2,1) 84.375%, rgba(13,11,60,1) 90.625%, rgba(0,0,0,1) 96.875%);
+
+sky blue
+#1F46A1
 
 Black - White Gradient
 background: rgb(0,0,0);
@@ -273,7 +286,7 @@ background: linear-gradient(135deg, rgba(0,0,0,1) 10%, rgba(128,128,128,1) 30%, 
     bottom: 0;
 }
 
-.footer span a {
+.footer span a, .fa {
     text-align: center;
     font-size: clamp(24px, 30px, 40px);
 }
